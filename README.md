@@ -32,6 +32,10 @@ wine msiexec /i python-2.7.15.msi /L*v log.txt
 dpkg --add-architecture i386 && apt-get update && apt-get install wine32
 cd ~/.wine/drive_c/Python27/
 wine python.exe Scripts/pip.exe install pyinstaller paramiko
+
+#Configuring PHP (received file size)
+sed -i -e 's+upload_max_filesize = 2M+upload_max_filesize = 100M+g' $(php -i | grep -i "loaded configuration file" | cut -d ">" -f2)
+
 ```
 
 ### Usage:
